@@ -18,7 +18,7 @@ export class VistaComponent {
 
   // ************ //
   listado: Users[] = [];
-  displayedColumns: string[] = ['Id', 'Nombre', 'Apellido','Correo'];
+  displayedColumns: string[] = ['Id', 'Nombre', 'Apellido','Correo',"eliminar"];
   dataSource: any;
   clickedRows = new Set<Users>();
 
@@ -51,6 +51,15 @@ export class VistaComponent {
     });
     */
     
+  }
+  eliminar(id:string){
+    console.log(id)
+    this.userService.deleteUser(id).subscribe(
+      {
+        next: () => location.reload(),
+        error: (e) => location.reload(),
+      }
+    )
   }
 
 }

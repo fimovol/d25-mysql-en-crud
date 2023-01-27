@@ -40,4 +40,8 @@ export class UserserviceService {
     let apiUser = environment.apiURL + 'nuevo/' ;
     return this.http.post<Users>(apiUser, usuario);
   }
+  deleteUser(usuarioId: string){
+    let apiUser = environment.apiURL + 'delete/'+ usuarioId ;
+    return this.http.delete(apiUser, {observe: 'response'})
+  }
 }

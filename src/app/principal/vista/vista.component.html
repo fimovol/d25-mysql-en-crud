@@ -21,6 +21,13 @@
   <th mat-header-cell *matHeaderCellDef>Correo</th>
   <td mat-cell *matCellDef="let element">{{element.Correo}}</td>
   </ng-container>
+
+  <ng-container matColumnDef="eliminar">
+    <th mat-header-cell *matHeaderCellDef>eliminar</th>
+    <td mat-cell *matCellDef="let element">
+        <button class="btn btn-danger" (click)="eliminar(element.Id)">eliminar</button>
+    </td>
+  </ng-container>
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr
