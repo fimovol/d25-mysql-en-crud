@@ -44,4 +44,8 @@ export class UserserviceService {
     let apiUser = environment.apiURL + 'delete/'+ usuarioId ;
     return this.http.delete(apiUser, {observe: 'response'})
   }
+  postActualizar(usuario: Users): Observable<Users>{
+    let apiUser = environment.apiURL + 'actualizar/' ;
+    return this.http.post<Users>(apiUser, usuario);
+  }
 }
