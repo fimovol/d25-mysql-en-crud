@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { NgLocalization } from '@angular/common';
+import { Component,Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Users } from 'src/app/models/users';
 import { UserserviceService } from 'src/app/services/userservice.service';
 
@@ -18,17 +20,18 @@ export class VistaComponent {
 
   // ************ //
   listado: Users[] = [];
-  displayedColumns: string[] = ['Id', 'Nombre', 'Apellido','Correo',"eliminar"];
+  displayedColumns: string[] = ['Id', 'Nombre', 'Apellido','Correo',"eliminar","actualizar"];
   dataSource: any;
   clickedRows = new Set<Users>();
 
   // ************ //
 
-  constructor(private userService: UserserviceService){}
+  constructor(private userService: UserserviceService,
+    public dialog: MatDialog){}
 
- 
+  datos: Users[] = [{Id: '10', Nombre: 'zzz', Apellido:'zzz',Correo:"zzz"}];
   ngOnInit(){
-
+    // this.actualizar()
  
     this.userService.getUsersAll().subscribe({
       next: (UserAll: Users[]) => 
@@ -61,5 +64,42 @@ export class VistaComponent {
       }
     )
   }
+  abrirdialog(usuarios:Users){
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog,{
+      data: usuarios
+    })
+    dialogRef.afterClosed().subscribe((resultado:Users|undefined) => {
+      console.log("el resultado de afterclose es:")
+      console.log(resultado)
+      if(typeof resultado === 'undefined'){
+        console.log("es undefined")
+      }else{
+        console.log("tiene datos")
+        this.actualizar(resultado)
+        location.reload()
+      }
+    })
+  }
+  actualizar(datos:Users){
+    this.userService.postActualizar(datos).subscribe(
+      (usuario: Users)=>console.log(usuario)
+    );
+  }
 
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: './dialog-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: Users,
+  ) {}
+  ngOnInit(){
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }
