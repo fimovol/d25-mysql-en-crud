@@ -28,9 +28,7 @@ export class UserserviceService {
   }
 
   getUserId(userId: string): Observable<Users> {
-    console.log("el userid de getuserid en el servico es "+userId)
     let apiUser = environment.apiURL + 'buscar/' + userId;
-    console.log("la api es "+apiUser)
     return this.http.get<Users>(apiUser);
   }
 

@@ -22,9 +22,8 @@ export class BusquedaComponent {
   getUserID(id: string){
     this.resultado = true;
     this.user = null;
-    console.log("el id de get user es "+id)
     this.userService.getUserId(id).subscribe({
-      next: (usuario: Users) => {this.user = usuario;  console.log(usuario)}
+      next: (usuario: Users) => {this.user = usuario}
       ,
       error: (e) => {console.error(e); this.resultado = false;},
       complete: () => console.info("La API devolvio un registro")

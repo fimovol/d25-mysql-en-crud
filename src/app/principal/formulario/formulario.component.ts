@@ -16,7 +16,6 @@ export class FormularioComponent {
   
   onSubmit(){
     this.userService.postUser(this.datos[0]).subscribe(
-      (usuario: Users)=>console.log(usuario)
     );
   }
   

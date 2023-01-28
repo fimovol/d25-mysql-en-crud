@@ -48,7 +48,7 @@ export class VistaComponent {
 
     /*
     this.userService.getUsersAllInterceptor().subscribe({
-      next: (response: any) => {this.listado = response.body; console.log(response)},
+      next: (response: any) => {this.listado = response.body},
       error: (e) => console.error(e),
       complete: () => console.info("La API devolvio todos los registros")
     });
@@ -56,7 +56,6 @@ export class VistaComponent {
     
   }
   eliminar(id:string){
-    console.log(id)
     this.userService.deleteUser(id).subscribe(
       {
         next: () => location.reload(),
@@ -69,42 +68,32 @@ export class VistaComponent {
       data: usuarios
     })
     dialogRef.afterClosed().subscribe((resultado:Users|undefined) => {
-      console.log("el resultado de afterclose es:")
-      console.log(resultado)
       if(typeof resultado === 'undefined'){
-        console.log("es undefined")
+
       }else{
-        console.log("tiene datos")
         this.actualizar(resultado)
         location.reload()
       }
     })
   }
   actualizar(datos:Users){
-    this.userService.postActualizar(datos).subscribe(
-      (usuario: Users)=>console.log(usuario)
-    );
+    this.userService.postActualizar(datos).subscribe();
   }
   abrirdialogcrear(){
-    console.log("abrir otro dialog")
     const dialogRef = this.dialog.open(Crearnuevousuario,{
       data: this.datos[0]
     })
     dialogRef.afterClosed().subscribe((resultado:Users|undefined)=>{
       if(typeof resultado === 'undefined'){
-        console.log("es undefined")
+
       }else{
-        console.log("tiene datos")
-        console.log(resultado)
         this.nuevousuario(resultado)
         location.reload()
       }
     })
   }
   nuevousuario(datos:Users){
-    this.userService.postUser(datos).subscribe(
-      (usuario: Users)=>console.log(usuario)
-    );
+    this.userService.postUser(datos).subscribe();
   }
 
 }
