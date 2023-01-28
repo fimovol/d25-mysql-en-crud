@@ -29,7 +29,7 @@ export class VistaComponent {
   constructor(private userService: UserserviceService,
     public dialog: MatDialog){}
 
-  datos: Users[] = [{Id: '10', Nombre: 'zzz', Apellido:'zzz',Correo:"zzz"}];
+  datos: Users[] = [{Id: '', Nombre: '', Apellido:'',Correo:""}];
   ngOnInit(){
     // this.actualizar()
  
@@ -85,6 +85,27 @@ export class VistaComponent {
       (usuario: Users)=>console.log(usuario)
     );
   }
+  abrirdialogcrear(){
+    console.log("abrir otro dialog")
+    const dialogRef = this.dialog.open(Crearnuevousuario,{
+      data: this.datos[0]
+    })
+    dialogRef.afterClosed().subscribe((resultado:Users|undefined)=>{
+      if(typeof resultado === 'undefined'){
+        console.log("es undefined")
+      }else{
+        console.log("tiene datos")
+        console.log(resultado)
+        this.nuevousuario(resultado)
+        location.reload()
+      }
+    })
+  }
+  nuevousuario(datos:Users){
+    this.userService.postUser(datos).subscribe(
+      (usuario: Users)=>console.log(usuario)
+    );
+  }
 
 }
 
@@ -103,3 +124,20 @@ export class DialogOverviewExampleDialog {
     this.dialogRef.close();
   }
 }
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: './dialog-crearnuevousuario.html',
+})
+export class Crearnuevousuario {
+  constructor(
+    public dialogRef: MatDialogRef<Crearnuevousuario>,
+    @Inject(MAT_DIALOG_DATA) public data: Users,
+  ) {}
+  ngOnInit(){
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+

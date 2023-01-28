@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from './menu/menu.component';
-import { VistaComponent,DialogOverviewExampleDialog } from './vista/vista.component';
+import { VistaComponent,DialogOverviewExampleDialog,Crearnuevousuario } from './vista/vista.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { AppRoutingModule } from '../app-routing.module';
@@ -17,6 +17,7 @@ import {MatButtonModule} from '@angular/material/button';
     MenuComponent,
     VistaComponent,
     DialogOverviewExampleDialog,
+    Crearnuevousuario,
     FormularioComponent,
     BusquedaComponent,
     LoginComponent
