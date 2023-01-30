@@ -12,6 +12,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { Reto26Component } from './reto26/reto26.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     MenuComponent,
@@ -20,7 +23,8 @@ import {MatButtonModule} from '@angular/material/button';
     Crearnuevousuario,
     FormularioComponent,
     BusquedaComponent,
-    LoginComponent
+    LoginComponent,
+    Reto26Component
   ],
   imports: [
     CommonModule,
@@ -31,14 +35,17 @@ import {MatButtonModule} from '@angular/material/button';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports:[
     MenuComponent,
     VistaComponent,
     FormularioComponent,
     BusquedaComponent,
-    MatTableModule
+    MatTableModule,
+    Reto26Component
   ]
 })
 export class PrincipalModule { }
