@@ -12,7 +12,8 @@ export class LoginComponent {
   constructor(private autenticacion: AutenticacionService, private router: Router){}
   
   redireccion = '';
-
+  usurio = ""
+  password = ""
   login(){
     this.autenticacion.login();
     this.redireccion = this.autenticacion.urlUsuarioIntentaAcceder;
