@@ -16,7 +16,7 @@ export class Reto26Component implements AfterViewInit {
   dataSource: Reto26DataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'name','username','email','phone','website'];
 
   constructor() {
     this.dataSource = new Reto26DataSource();
