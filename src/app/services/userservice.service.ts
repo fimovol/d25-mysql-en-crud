@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Reto26, reto26array } from '../models/reto26';
 import { Users } from '../models/users';
 
 @Injectable({
@@ -45,5 +46,9 @@ export class UserserviceService {
   postActualizar(usuario: Users): Observable<Users>{
     let apiUser = environment.apiURL + 'actualizar/' ;
     return this.http.post<Users>(apiUser, usuario);
+  }
+  getReto26All():Observable<reto26array>{
+    let apiUser = environment.rutareto26 + 'users/';
+    return this.http.get<reto26array>(apiUser);
   }
 }
